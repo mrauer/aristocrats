@@ -1,5 +1,7 @@
 import requests
 
+requests.packages.urllib3.disable_warnings()
+
 DIV_URL = ('https://ycharts.com/charts/fund_data.json?securities='
            'id%3A{}%2Cinclude%3Atrue%2C%2C&calcs='
            'id%3Adividend%2Cinclude%3Atrue%2C%2C&correlations='
@@ -8,6 +10,7 @@ DIV_URL = ('https://ycharts.com/charts/fund_data.json?securities='
            'false&quoteLegend=true&partner=&quotes=&legendOnChart='
            'true&displayTicker=false&ychartsLogo=&useEstimates='
            'false&maxPoints=815')
+
 
 class Grab:
     def __init__(self):
