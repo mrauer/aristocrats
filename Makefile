@@ -5,4 +5,4 @@ run:
 	docker build -t aristocrats:latest . && docker run --env-file .env -it --rm -v ${CURDIR}:/usr/src/app aristocrats:latest
 
 grab:
-	python3 main.py
+	python3 main.py $(source)
