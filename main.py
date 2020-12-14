@@ -1,6 +1,16 @@
+import sys
+
 from lib import grab
 
-g = grab.Grab()
-div = g.get_dividends_history('ROST')
+# div = g.get_dividends_history('PSX')
 
-print(div)
+
+def main():
+    args = sys.argv
+    g = grab.Grab()
+    if args[1] == 'tickers':
+        print(g.get_tickers())
+
+
+if __name__ == "__main__":
+    exit(main())
