@@ -1,12 +1,18 @@
 import json
+import os
 import string
 import time
 
 import requests
 
+NETLOC = os.environ['NETLOC']
+COOKIE_FLAG = int(os.environ['COOKIE_FLAG'])
+COOKIE_NAME = os.environ['COOKIE_NAME']
+COOKIE_VALUE = os.environ['COOKIE_VALUE']
+
 requests.packages.urllib3.disable_warnings()
 
-DIV_URL = ('https://ycharts.com/charts/fund_data.json?securities='
+DIV_URL = ('https://{}/charts/fund_data.json?securities='
            'id%3A{}%2Cinclude%3Atrue%2C%2C&calcs='
            'id%3Adividend%2Cinclude%3Atrue%2C%2C&correlations='
            '&format=real&recessions=false&chartView=&splitType='
@@ -14,7 +20,7 @@ DIV_URL = ('https://ycharts.com/charts/fund_data.json?securities='
            'false&quoteLegend=true&partner=&quotes=&legendOnChart='
            'true&displayTicker=false&ychartsLogo=&useEstimates='
            'false&maxPoints=815')
-TICKERS_URL = ('https://ycharts.com/search/data/'
+TICKERS_URL = ('https://{}/search/data/'
                '?pageNum={}&queryInput={}&searchType=search_companies')
 TICKER_MAX_PAGE = 20
 TICKERS_FILE = 'data/tickers.json'
@@ -22,10 +28,15 @@ TICKERS_FILE = 'data/tickers.json'
 
 class Grab:
     def __init__(self):
-        pass
+        self.cookies = {}
+        if COOKIE_FLAG == 1:  # Cookies are set.
+            self.cookies = {COOKIE_NAME: COOKIE_VALUE}
 
     def get_dividends_history(self, ticker):
-        r = requests.get(DIV_URL.format(ticker), verify=False)
+        r = requests.get(
+          DIV_URL.format(NETLOC, ticker),
+          verify=False,
+          cookies=self.cookies)
         return r.text
 
     def get_tickers(self):
@@ -36,7 +47,7 @@ class Grab:
                       'Total Tickers={}'.format(let, str(i), len(ret)))
                 try:
                     r = requests.get(
-                      TICKERS_URL.format(str(i), let), verify=False)
+                      TICKERS_URL.format(NETLOC, str(i), let), verify=False)
                     data = r.json()
                     for item in data['results']:
                         key = item['search_id']
