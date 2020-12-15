@@ -11,6 +11,9 @@ def main():
     if args[1] == 'tickers':
         print(g.get_tickers())
 
+    if args[1] == 'dividends':
+        print(g.get_dividends_history('KO'))
+
 
 if __name__ == "__main__":
     exit(main())
