@@ -1,5 +1,6 @@
 import json
 import os
+import random
 import string
 import time
 
@@ -24,6 +25,9 @@ TICKERS_URL = ('https://{}/search/data/'
                '?pageNum={}&queryInput={}&searchType=search_companies')
 TICKER_MAX_PAGE = 20
 TICKERS_FILE = 'data/tickers.json'
+DIVIDENDS_FILE = 'data/dividends.json'
+DIVIDENDS_PAUSE_SECONDS = random.randint(4, 12)
+DIVIDENDS_PER_BATCH_NUM = 2
 
 
 class Grab:
@@ -32,12 +36,25 @@ class Grab:
         if COOKIE_FLAG == 1:  # Cookies are set.
             self.cookies = {COOKIE_NAME: COOKIE_VALUE}
 
-    def get_dividends_history(self, ticker):
-        r = requests.get(
-          DIV_URL.format(NETLOC, ticker),
-          verify=False,
-          cookies=self.cookies)
-        return r.text
+    @property
+    def dividends(self):
+        dividends = {}
+        try:
+            with open(DIVIDENDS_FILE, 'r') as infile:
+                dividends = json.load(infile)
+        except Exception:
+            pass
+        return dividends
+
+    @property
+    def tickers(self):
+        tickers = {}
+        try:
+            with open(TICKERS_FILE, 'r') as infile:
+                tickers = json.load(infile)
+        except Exception:
+            pass
+        return tickers
 
     def get_tickers(self):
         ret = {}
@@ -60,3 +77,30 @@ class Grab:
         with open(TICKERS_FILE, 'w') as outfile:
             json.dump(ret, outfile)
         return 0
+
+    def get_dividend(self, ticker):
+        data = {}
+        print('Processing {}'.format(ticker))
+        try:
+            r = requests.get(
+                DIV_URL.format(NETLOC, ticker),
+                verify=False,
+                cookies=self.cookies)
+            data = r.json()
+        except Exception:
+            return
+        return data
+
+    def get_dividends(self):
+        dividends = self.dividends
+        original_len = len(dividends)
+        print('{} dividends in total'.format(len(dividends)))
+        for idx, ticker in enumerate(self.tickers.keys()):
+            if ticker not in dividends.keys():
+                data = self.get_dividend(ticker)
+                dividends[ticker] = data
+                time.sleep(DIVIDENDS_PAUSE_SECONDS)
+            if idx + 1 == original_len + DIVIDENDS_PER_BATCH_NUM:
+                with open(DIVIDENDS_FILE, 'w') as outfile:
+                    json.dump(dividends, outfile)
+                return 0
