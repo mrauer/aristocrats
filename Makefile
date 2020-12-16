@@ -6,3 +6,6 @@ run:
 
 grab:
 	python3 main.py $(source)
+
+save:
+	sh lib/save.sh
