@@ -1,3 +1,4 @@
+import inspect
 import json
 import os
 import random
@@ -26,8 +27,10 @@ TICKERS_URL = ('https://{}/search/data/'
 TICKER_MAX_PAGE = 20
 TICKERS_FILE = 'data/tickers.json'
 DIVIDENDS_FILE = 'data/dividends.json'
-DIVIDENDS_PAUSE_SECONDS = random.randint(4, 12)
-DIVIDENDS_PER_BATCH_NUM = 2
+DIVIDENDS_PAUSE_SECONDS = random.randint(7, 19)
+DIVIDENDS_PER_BATCH_NUM = 5
+SAMPLE_TICKER = 'KO'
+CONNECTION_CHECK_MOD = 3
 
 
 class Grab:
@@ -78,14 +81,32 @@ class Grab:
             json.dump(ret, outfile)
         return 0
 
-    def get_dividend(self, ticker):
+    def get_raw_data(self, data):
+        return data['chart_data'][0][0]['raw_data']
+
+    def is_connected(self):
+        try:
+            unauthed = len(
+                self.get_raw_data(
+                    self.get_dividend(SAMPLE_TICKER, {})))
+            authed = len(
+                self.get_raw_data(
+                    self.get_dividend(SAMPLE_TICKER, self.cookies)))
+            if authed > unauthed:
+                return True
+        except Exception:
+            return False
+        return False
+
+    def get_dividend(self, ticker, cookies):
         data = {}
-        print('Processing {}'.format(ticker))
+        if inspect.stack()[1][3] != 'is_connected':
+            print('Processing {}'.format(ticker))
         try:
             r = requests.get(
                 DIV_URL.format(NETLOC, ticker),
                 verify=False,
-                cookies=self.cookies)
+                cookies=cookies)
             data = r.json()
         except Exception:
             return
@@ -97,9 +118,12 @@ class Grab:
         print('{} dividends in total'.format(len(dividends)))
         for idx, ticker in enumerate(self.tickers.keys()):
             if ticker not in dividends.keys():
-                data = self.get_dividend(ticker)
+                data = self.get_dividend(
+                    ticker, self.cookies)
                 dividends[ticker] = data
                 time.sleep(DIVIDENDS_PAUSE_SECONDS)
+                if ((idx + 1) % CONNECTION_CHECK_MOD) == 0:
+                    print('--connected {}'.format(self.is_connected()))
             if idx + 1 == original_len + DIVIDENDS_PER_BATCH_NUM:
                 with open(DIVIDENDS_FILE, 'w') as outfile:
                     json.dump(dividends, outfile)
