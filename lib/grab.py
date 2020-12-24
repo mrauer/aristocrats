@@ -27,10 +27,10 @@ TICKERS_URL = ('https://{}/search/data/'
 TICKER_MAX_PAGE = 20
 TICKERS_FILE = 'data/tickers.json'
 DIVIDENDS_FILE = 'data/dividends.json'
-DIVIDENDS_PAUSE_SECONDS = random.randint(7, 19)
-DIVIDENDS_PER_BATCH_NUM = 5
+DIVIDENDS_PAUSE_SECONDS = random.randint(5, 12)
+DIVIDENDS_PER_BATCH_NUM = 300
 SAMPLE_TICKER = 'KO'
-CONNECTION_CHECK_MOD = 3
+CONNECTION_CHECK_MOD = 10
 
 
 class Grab:
