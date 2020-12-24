@@ -9,3 +9,6 @@ grab:
 
 save:
 	sh lib/save.sh
+
+load:
+	sh lib/load.sh
