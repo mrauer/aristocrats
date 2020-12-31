@@ -21,3 +21,4 @@ class Convert:
                     pass
         with open(OUTPUT_PATH, 'w') as outfile:
             json.dump(data, outfile)
+        return 0

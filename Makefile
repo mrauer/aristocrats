@@ -10,6 +10,9 @@ grab:
 convert:
 	python3 main.py convert
 
+compute:
+	python3 main.py compute
+
 save:
 	sh lib/save.sh
 

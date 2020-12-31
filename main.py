@@ -1,9 +1,10 @@
 import sys
 
-from lib import convert, grab
+from lib import compute, convert, grab
 
 GRAB_KW = 'grab'
 CONVERT_KW = 'convert'
+COMPUTE_KW = 'compute'
 
 
 def main():
@@ -18,6 +19,10 @@ def main():
     if args[1] == CONVERT_KW:
         c = convert.Convert()
         return c.convert_data()
+
+    if args[1] == COMPUTE_KW:
+        u = compute.Compute()
+        return u.compute_aristocrats()
 
 
 if __name__ == "__main__":
