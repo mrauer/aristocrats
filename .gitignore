@@ -1,5 +1,6 @@
 .idea
 .env
-*__pycache__*
 .DS_Store
+*__pycache__*
 data/dividends.json
+data/history.json
