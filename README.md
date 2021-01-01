@@ -2,17 +2,17 @@
 
 "A company may be considered a dividend aristocrat if it raises its dividends consistently for at least the past 25 years."
 
-This small software aim to go beyond that definition to identify the aristocrats-to-be by computing the dividend consistency over the years.
+This small software aim to go beyond that definition to identify the `aristocrats-to-be` by computing the dividend consistency over the years.
 
 ### Data Source
 
-The first challenge was to find a datasource that we can rely on. The data used by the project has been extracted for a trial account from a website that will not be disclosed. Copying the data over your local machine is not legal.
+The first challenge was to find a datasource that we can rely on. The data used by the project has been extracted from a trial account of a company that will not be disclosed: copying the data without license over your local machine is not legal.
 
-But if you would like to move forward and get access to the full data for over 10,000 tickers, then feel free to contact the owner of the project.
+But if you would like to move forward and get access to the full data history of over 10,000 tickers, then feel free to contact the owner of the project.
 
 ### .env
 
-In order to work, there must be a `.env` file at the root of the project with the following environment variables. Contact the owner of the project to get the proper values.
+In order to work, you must placed an `.env` file at the root of the project with the following environment variables. Contact the owner of the project to get the proper values.
 
 ```sh
 NETLOC=contact_maxime.rauer@gmail.com
