@@ -1,5 +1,4 @@
 <!-- PROJECT LOGO -->
-<br />
 <p align="center">
   <a href="https://github.com/mrauer/aristocrats">
     <img src="images/logo.png" alt="Logo">
@@ -17,11 +16,8 @@
   </p>
 </p>
 
-
-
 <!-- TABLE OF CONTENTS -->
-<details open="open">
-  <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
+<summary><h2 style="display: inline-block">Table of Contents</h2></summary>
   <ol>
     <li><a href="#about-the-project">About The Project</a></li>
     <li><a href="#data-source">Data Source</a></li>
@@ -30,7 +26,6 @@
     <li><a href="#commands">Commands</a></li>
     <li><a href="#license">License</a></li>
   </ol>
-</details>
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
