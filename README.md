@@ -1,16 +1,48 @@
-# Aristocrats
+<!-- PROJECT LOGO -->
+<p align="center">
+  <a href="https://github.com/mrauer/aristocrats">
+    <img src="images/logo.png" alt="Logo">
+  </a>
+
+  <h3 align="center">Aristocrats</h3>
+
+  <p align="center">
+    Identification of prospective aristocrat stocks.
+    <br />
+    <br />
+    <a href="https://github.com/mrauer/aristocrats/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/mrauer/aristocrats/issues">Request Feature</a>
+  </p>
+</p>
+
+<!-- TABLE OF CONTENTS -->
+<summary><h2 style="display: inline-block">Table of Contents</h2></summary>
+  <ol>
+    <li><a href="#about-the-project">About The Project</a></li>
+    <li><a href="#data-source">Data Source</a></li>
+    <li><a href="#env">.env</a></li>
+    <li><a href="#data-output">Data Output</a></li>
+    <li><a href="#commands">Commands</a></li>
+    <li><a href="#license">License</a></li>
+  </ol>
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
 
 "A company may be considered a dividend aristocrat if it raises its dividends consistently for at least the past 25 years."
 
 This small software aim to go beyond that definition to identify the `aristocrats-to-be` by computing the dividend consistency over the years.
 
-### Data Source
+<!-- DATA SOURCE -->
+## Data Source
 
 The first challenge was to find a datasource that we can rely on. The data used by the project has been extracted from a trial account of a company that will not be disclosed: copying the data without license over your local machine is not legal.
 
 But if you would like to move forward and get access to the full data history of over 10,000 tickers, then feel free to contact the owner of the project.
 
-### .env
+<!-- ENV -->
+## .env
 
 In order to work, you must placed an `.env` file at the root of the project with the following environment variables. Contact the owner of the project to get the proper values.
 
@@ -25,7 +57,8 @@ BUCKET_NAME=aristocrats
 
 ```
 
-### Data Output
+<!-- DATA OUTPUT -->
+## Data Output
 
 The more recent data have been computed in December 2020. You can retrieve it at `data/aristocrats.csv`.
 
@@ -35,7 +68,8 @@ Columns definition:
 * Rounded number of years in a row the dividend payout has been increasing.
 * Dividend category (from `regular` to `aristocrat`)
 
-### Commands
+<!-- COMMANDS -->
+## Commands
 
 If you would like to use this tool or contribute to it, you'll need `Docker` and `make` installed. The `.env` file is required.
 
@@ -51,3 +85,8 @@ make compute (compute the dividends)
 make save (store datasets to S3)
 make load (load datasets from S3)
 ```
+
+<!-- LICENSE -->
+## License
+
+Distributed under the MIT License. See `LICENSE` for more information.
