@@ -1,16 +1,76 @@
-# Aristocrats
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
+
+
+
+<!-- PROJECT LOGO -->
+<br />
+<p align="center">
+  <a href="https://github.com/mrauer/aristocrats">
+    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  </a>
+
+  <h3 align="center">Aristocrats</h3>
+
+  <p align="center">
+    Identification of prospective aristocrat stocks.
+    <br />
+    <br />
+    <a href="https://github.com/mrauer/aristocrats/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/mrauer/aristocrats/issues">Request Feature</a>
+  </p>
+</p>
+
+
+
+<!-- TABLE OF CONTENTS -->
+<details open="open">
+  <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgements">Acknowledgements</a></li>
+  </ol>
+</details>
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
 
 "A company may be considered a dividend aristocrat if it raises its dividends consistently for at least the past 25 years."
 
 This small software aim to go beyond that definition to identify the `aristocrats-to-be` by computing the dividend consistency over the years.
 
-### Data Source
+<!-- DATA SOURCE -->
+## Data Source
 
 The first challenge was to find a datasource that we can rely on. The data used by the project has been extracted from a trial account of a company that will not be disclosed: copying the data without license over your local machine is not legal.
 
 But if you would like to move forward and get access to the full data history of over 10,000 tickers, then feel free to contact the owner of the project.
 
-### .env
+<!-- ENV -->
+## .env
+
 
 In order to work, you must placed an `.env` file at the root of the project with the following environment variables. Contact the owner of the project to get the proper values.
 
@@ -25,7 +85,8 @@ BUCKET_NAME=aristocrats
 
 ```
 
-### Data Output
+<!-- DATA OUTPUT -->
+## Data Output
 
 The more recent data have been computed in December 2020. You can retrieve it at `data/aristocrats.csv`.
 
@@ -35,7 +96,8 @@ Columns definition:
 * Rounded number of years in a row the dividend payout has been increasing.
 * Dividend category (from `regular` to `aristocrat`)
 
-### Commands
+<!-- COMMANDS -->
+## Commands
 
 If you would like to use this tool or contribute to it, you'll need `Docker` and `make` installed. The `.env` file is required.
 
@@ -51,3 +113,24 @@ make compute (compute the dividends)
 make save (store datasets to S3)
 make load (load datasets from S3)
 ```
+
+<!-- LICENSE -->
+## License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/github_username/repo.svg?style=for-the-badge
+[contributors-url]: https://github.com/github_username/repo/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/github_username/repo.svg?style=for-the-badge
+[forks-url]: https://github.com/github_username/repo/network/members
+[stars-shield]: https://img.shields.io/github/stars/github_username/repo.svg?style=for-the-badge
+[stars-url]: https://github.com/github_username/repo/stargazers
+[issues-shield]: https://img.shields.io/github/issues/github_username/repo.svg?style=for-the-badge
+[issues-url]: https://github.com/github_username/repo/issues
+[license-shield]: https://img.shields.io/github/license/github_username/repo.svg?style=for-the-badge
+[license-url]: https://github.com/github_username/repo/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://linkedin.com/in/github_username
+
